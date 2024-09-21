@@ -11,18 +11,16 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Wishlist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID userId;
+    private UUID wishlistId;
 
-    private String username;
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private User user;
 
-    private String password;
-
-    private String email;
-
-    @OneToOne(mappedBy = "user")
-    private Wishlist wishlist;
+    @OneToMany(mappedBy = "wishlist")
+    private List<Game> games;
 }

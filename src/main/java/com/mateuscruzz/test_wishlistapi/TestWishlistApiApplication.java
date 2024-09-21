@@ -1,0 +1,13 @@
+package com.mateuscruzz.test_wishlistapi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class TestWishlistApiApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(TestWishlistApiApplication.class, args);
+    }
+
+}

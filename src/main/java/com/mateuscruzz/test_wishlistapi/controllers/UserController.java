@@ -1,5 +1,6 @@
 package com.mateuscruzz.test_wishlistapi.controllers;
 
+import com.mateuscruzz.test_wishlistapi.entity.Game;
 import com.mateuscruzz.test_wishlistapi.entity.User;
 import com.mateuscruzz.test_wishlistapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -65,5 +67,11 @@ public class UserController {
         catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/wishlist/{userId}")
+    public ResponseEntity<Set<Game>> getUserWishlist(@PathVariable UUID userId) {
+        Set<Game> wishlist = userService.getUserWishlist(userId);
+        return ResponseEntity.ok(wishlist);
     }
 }

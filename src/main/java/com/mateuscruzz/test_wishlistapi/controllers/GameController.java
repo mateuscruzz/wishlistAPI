@@ -25,4 +25,5 @@ public class GameController {
         gameService.removeGameFromUserWishlist(userId, gameId);
         return ResponseEntity.noContent().build();
     }
+
 }

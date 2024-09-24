@@ -36,4 +36,5 @@ public class GameService {
         gameRepository.delete(game);
         userRepository.save(user);
     }
+
 }

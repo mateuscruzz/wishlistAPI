@@ -26,4 +26,14 @@ public class GameService {
         userRepository.save(user);
         return game;
     }
+
+    public void removeGameFromUserWishlist(UUID userId, Long gameId) {
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+        Game game = gameRepository.findById(gameId)
+                .orElseThrow(() -> new RuntimeException("Game not found"));
+        user.getWishlist().remove(game);
+        gameRepository.delete(game);
+        userRepository.save(user);
+    }
 }

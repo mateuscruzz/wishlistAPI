@@ -16,8 +16,8 @@ import java.util.UUID;
 public class Game {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.UUID)
-        private UUID gameId;
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long gameId;
 
         private String title;
 

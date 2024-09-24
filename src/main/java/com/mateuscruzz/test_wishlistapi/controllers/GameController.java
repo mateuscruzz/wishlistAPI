@@ -19,4 +19,10 @@ public class GameController {
         Game addedGame = gameService.addGameToUserWishlist(userId, game);
         return ResponseEntity.ok(addedGame);
     }
+
+    @DeleteMapping("/{userId}/{gameId}")
+    public ResponseEntity<Void> removeGameFromWishlist(@PathVariable UUID userId, @PathVariable Long gameId) {
+        gameService.removeGameFromUserWishlist(userId, gameId);
+        return ResponseEntity.noContent().build();
+    }
 }

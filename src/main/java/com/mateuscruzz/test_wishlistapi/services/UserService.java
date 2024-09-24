@@ -36,33 +36,4 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    /*public User createUser(User user) {
-        logger.info("Creating user with email: {}", user.getEmail());
-
-        Optional<User> existingUserByEmail = userRepository.findByEmail(user.getEmail());
-        Optional<User> existingUserByPassword = userRepository.findByPassword(user.getPassword());
-
-        if (existingUserByEmail.isPresent()) {
-            throw new IllegalArgumentException("User with this email already exists");
-        }
-
-        if (existingUserByPassword.isPresent()) {
-            throw new IllegalArgumentException("User with this password already exists");
-        }
-
-        UUID userId = UUID.randomUUID();
-        user.setUserId(userId);
-        User savedUser = userRepository.save(user);
-
-        logger.info("User created with ID: {}", savedUser.getUserId());
-
-        Wishlist wishlist = new Wishlist();
-        wishlist.setUserId(userId);
-        wishlist.setUser(savedUser);
-        wishlistRepository.save(wishlist);
-
-        logger.info("Wishlist created for user ID: {}", userId);
-
-        return savedUser;
-    }*/
 }

@@ -39,14 +39,14 @@ public class UserController {
         }
     }
 
-    /*@PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUserById(@PathVariable String id) {
         try {
-            User createdUser = userService.createUser(user);
-            return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+            userService.deleteUserById(UUID.fromString(id));
+            return ResponseEntity.noContent().build();
         }
         catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }*/
+    }
 }

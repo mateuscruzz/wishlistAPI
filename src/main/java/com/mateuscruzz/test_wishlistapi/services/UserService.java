@@ -36,4 +36,9 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public Optional<Void> deleteUserById(UUID id) {
+        userRepository.deleteById(id);
+        return Optional.empty();
+    }
+
 }

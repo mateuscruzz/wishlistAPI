@@ -14,9 +14,9 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
-    @PostMapping("/{userId}")
-    public ResponseEntity<Game> addGameToWishlist(@PathVariable UUID userId, @RequestBody Game game) {
-        Game addedGame = gameService.addGameToUserWishlist(userId, game);
+    @PostMapping("/{userId}/{gameId}")
+    public ResponseEntity<Game> addGameToWishlist(@PathVariable UUID userId, @PathVariable Long gameId) {
+        Game addedGame = gameService.addGameToUserWishlist(userId, gameId);
         return ResponseEntity.ok(addedGame);
     }
 

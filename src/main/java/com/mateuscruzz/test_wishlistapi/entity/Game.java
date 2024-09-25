@@ -1,13 +1,14 @@
 package com.mateuscruzz.test_wishlistapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Objects;
-import java.util.UUID;
+import javax.validation.constraints.Size;
+import java.util.*;
 
 @Entity
 @Data
@@ -16,12 +17,19 @@ import java.util.UUID;
 public class Game {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long gameId;
+        private Long id;
 
-        private String title;
+        private String name;
 
-        private String platform;
+        private String url;
+
+        @Column(name = "story_line", length = 15000)
+        @JsonProperty("storyline")
+        @Size(max = 5000, message = "Story line must be less than 5000 characters")
+        private String storyLine;
+
+        @ElementCollection
+        private Set<Long> similar_games  = new HashSet<>();
 
         @JsonIgnore
         @ManyToOne
@@ -32,11 +40,11 @@ public class Game {
         public boolean equals(Object o) {
                 if (this == o) return true;
                 if (!(o instanceof Game game)) return false;
-            return Objects.equals(gameId, game.gameId);
+            return Objects.equals(id, game.id);
         }
 
         @Override
         public int hashCode() {
-                return Objects.hash(gameId);
+                return Objects.hash(id);
         }
 }

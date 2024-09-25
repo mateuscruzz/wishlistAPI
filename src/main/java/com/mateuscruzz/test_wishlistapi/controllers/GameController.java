@@ -26,4 +26,13 @@ public class GameController {
         return ResponseEntity.noContent().build();
     }
 
+
+    @PostMapping("/search")
+    public ResponseEntity<String> searchGames(@RequestHeader("Client-ID") String clientId,
+                                              @RequestHeader("Authorization") String accessToken,
+                                              @RequestBody String query) {
+        String response = gameService.searchGames(clientId, accessToken, query);
+        return ResponseEntity.ok(response);
+    }
+
 }
